@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="vanjaka_favicon.png">
+    <title>VANJAKA CORPORATION - Inovativna Elektronika i DIY Proizvodi</title>
+    
+    <style>
+        /* CSS STILOVI INTEGRIRANI DIREKTNO U HTML */
+        
+        /* KEYFRAMES ZA SIMULACIJU TREPĆUĆEG TEKSTA (BLINK) */
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+        .blink-text { animation: blink 1s step-end infinite; color: red; font-weight: bold; }
+        
+        /* 1. Opći stilovi tijela i fontovi */
+        body { 
+            background-color: #e0e0e0; 
+            color: #000000;
+            font-family: "Times New Roman", Times, serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.4; 
+            /* Pozadinska slika (ako postoji) */
+            background-image: url('vanjaka_bg.png'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            display: flex; 
+            justify-content: center; 
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+        }
+        
+        /* ŠARENI KVADRATI - APSOLUTNO POZICIONIRANI */
+        #retro-squares-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            pointer-events: none; 
+            overflow: hidden;
+        }
+
+        .retro-square {
+            position: absolute;
+            width: 150px; 
+            height: 150px;
+            border: 10px solid; 
+            opacity: 1.0; 
+        }
+
+        /* POZICIJE I BOJE KVADRATA */
+        #sq1 { 
+            border-color: red; 
+            top: 8%; 
+            left: 10%; 
+        }
+        #sq2 { 
+            border-color: yellow; 
+            top: 15%; 
+            left: 5%; 
+        }
+        #sq3 { 
+            border-color: #3399FF; 
+            top: 20%; 
+            left: 18%; 
+        }
+        #sq4 { 
+            border-color: lime; 
+            bottom: 10%; 
+            right: 8%; 
+        }
+        #sq5 { 
+            border-color: orange; 
+            bottom: 20%; 
+            right: 15%; 
+        }
+
+        
+        /* GLAVNI WRAPPER */
+        #main-wrapper { 
+            width: 90%; 
+            max-width: 760px; 
+            margin: 0; 
+            overflow: hidden; 
+            border: 3px solid #666; 
+            background-color: #ffffff; 
+            box-shadow: 5px 5px 0px #aaaaaa; 
+            position: relative; 
+        }
+        
+        /* 2. Zaglavlje i Navigacija - NATRPANI IZGLED */
+        header { 
+            background: #000080; 
+            color: white; 
+            padding: 10px 20px; 
+            border-bottom: 5px double #000000; 
+            overflow: auto; 
+        }
+        
+        h1 { display: none; } 
+        
+        /* SLIKA LOGOTIPA */
+        .logo-container {
+            float: left; 
+            width: 35%; 
+            padding-right: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .logo-img { 
+            display: block; 
+            margin: 10px auto; 
+            max-width: 100%; 
+            height: auto; 
+            border: 2px solid #000000; 
+            padding: 3px; 
+            background-color: #cccccc; 
+            box-shadow: 2px 2px #333333; 
+        }
+
+        /* TEKST I NAVIGACIJA DESNO */
+        .header-content {
+            float: right; 
+            width: 65%;
+            text-align: center; 
+            padding-top: 5px;
+        }
+
+        /* NOVI STIL ZA LOGOTIPE U HEADERU */
+        .header-badges {
+            text-align: center;
+            margin: 5px 0 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px; 
+            flex-wrap: wrap; 
+        }
+        .header-badges img {
+            width: 110px; 
+            height: auto;
+            border: 1px solid #000;
+            box-shadow: 1px 1px #333;
+        }
+        
+        /* Navigacija */
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 10px 0 0 0; 
+            display: flex; 
+            justify-content: space-around; 
+            border-top: 1px solid white; 
+            padding-top: 5px; 
+            flex-wrap: wrap; 
+        }
+        
+        nav ul li a { 
+            color: #add8e6; 
+            text-decoration: underline; 
+            padding: 5px 10px; 
+            font-weight: bold; 
+            display: block; 
+            white-space: nowrap; 
+        }
+        
+        nav ul li a:hover { 
+            background-color: #000000; 
+            color: #ff00ff; 
+        }
+        
+        /* MARQUEE STIL */
+        .marquee-box { 
+            background-color: #c0c0c0; 
+            color: red; 
+            font-weight: bold; 
+            padding: 3px 0; 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000; 
+            margin-top: 10px; 
+            clear: both; 
+        }
+        
+        /* 3. Sekcije i Tekst */
+        section { 
+            padding: 20px; 
+            margin-bottom: 0; 
+            border-bottom: 1px dashed #cccccc; 
+        }
+        
+        .shadow-text { 
+            text-shadow: 2px 2px #aaaaaa; 
+        }
+        
+        /* ŽUTI MARKER EFEKT */
+        .highlight { 
+            background-color: #ffff00; 
+            color: #000000;             
+            padding: 0 3px;             
+            border: 1px solid #000000;  
+            font-weight: bold;          
+        }
+        
+        h2 { 
+            color: #000080; 
+            text-align: left; 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid #000080; 
+            padding-bottom: 5px; 
+        }
+
+        /* SLIKE USLUGA */
+        .service-img { 
+            display: block; 
+            margin: 5px auto 10px auto; 
+            max-width: 90%; 
+            height: auto; 
+            border: 1px solid #000000; 
+            box-shadow: 2px 2px #333333; 
+        }
+        
+        /* Raspored dva stupca (float) */
+        .service-item { 
+            overflow: auto; 
+        }
+        
+        .service-item div { 
+            width: 47%; 
+            float: left; 
+            margin-right: 3%; 
+            border: 1px solid #000000; 
+            padding: 10px; 
+            background: #f0f0f0; 
+            margin-top: 10px; 
+            min-height: 320px; 
+        }
+        .service-item div:last-child { 
+            float: right; 
+            margin-right: 0; 
+        }
+        
+        /* RETRO LISTE */
+        .service-item ul { 
+            list-style-type: square; 
+            padding-left: 10px; 
+            margin-top: 5px; 
+            margin-bottom: 10px; 
+        }
+        
+        .service-item ul li { 
+            border: 1px solid #333; 
+            background-color: #d0d0d0; 
+            padding: 2px 5px; 
+            margin-bottom: 3px; 
+            list-style-position: inside; 
+        }
+        
+        /* 4. Obrazac i Gumbi */
+        form { 
+            background: #cccccc; 
+            padding: 20px; 
+            border: 2px outset #ffffff; 
+        }
+        
+        input[type="text"], input[type="email"], textarea { 
+            border: 2px inset #ffffff; 
+            background-color: white; 
+            width: 100%; 
+            padding: 8px; 
+            margin-top: 5px; 
+        }
+        
+        /* 3D gumb */
+        button[type="submit"] { 
+            background: #c0c0c0; 
+            color: #000000; 
+            padding: 10px 20px; 
+            border: 3px outset #FFFFFF; 
+            border-right-color: #808080; 
+            border-bottom-color: #808080; 
+            cursor: pointer; 
+            font-size: 1.1em; 
+            font-weight: bold; 
+            margin-top: 15px;
+        }
+        button[type="submit"]:active { 
+            border: 3px inset #000000; 
+            background: #a0a0a0; 
+        }
+        
+        /* RETRO PORUKA O GREŠKI */
+        #error-message { 
+            color: red; 
+            font-weight: bold; 
+            text-align: center; 
+            padding: 8px; 
+            margin-bottom: 15px; 
+            border: 3px solid red; 
+            background-color: #ffe0e0; 
+            display: none; 
+        }
+        
+        /* 5. Podnožje */
+        footer { 
+            background: #aaaaaa;
+            color: #333333; 
+            text-align: center; 
+            padding: 15px 20px; 
+            font-size: 0.8em; 
+            border-top: 5px solid #000000; 
+            border-bottom: 5px groove #ffffff; 
+        }
+
+        /* DODATNI STILOVI ZA RETRO ELEMENTE U PODNOŽJU */
+        .retro-bottom {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding-top: 10px;
+        }
+
+        .counter {
+            border: 2px solid #000000;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff00ff; 
+            box-shadow: 1px 1px #333;
+            margin-bottom: 10px;
+        }
+
+        /* STIL ZA LOGOTIPE */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .browser-badge-img {
+            width: 88px; 
+            height: 31px; 
+            border: 1px solid #000;
+            box-shadow: 1px 1px #333;
+        }
+
+        /* STIL ZA LINK NA VRH */
+        .top-link {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #000080;
+            text-decoration: none;
+            border: 2px solid #000080;
+            padding: 5px 10px;
+            background-color: #c0c0c0;
+            box-shadow: 2px 2px #333;
+        }
+        .top-link:hover {
+            background-color: #d0d0d0;
+            text-decoration: underline;
+        }
+
+        /* STIL ZA PRAVNI TEKST (SITNIJI I NATKOŠENI) */
+        .legal-text {
+            font-size: 0.75em; 
+            font-style: italic; 
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #333333;
+        }
+
+        /* COOKIE BANNER STILOVI */
+        #cookie-banner {
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background-color: #c0c0c0; 
+            color: #000000;
+            padding: 10px 20px; 
+            text-align: center; 
+            font-size: 0.9em; 
+            border-top: 3px solid #000000; 
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 100; 
+            display: block; 
+        }
+        
+        #cookie-banner button {
+            background: #000080; 
+            color: white; 
+            padding: 5px 15px; 
+            border: 2px outset #ffffff; 
+            cursor: pointer; 
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        #cookie-banner button:active {
+            border: 2px inset #000000; 
+            background: #000066;
+        }
+        
+        /* UKLONJEN @media (max-width: 600px) BLOK RADI KAOSA NA MOBITELU */
+    </style>
+</head>
+<body>
+    
+    <div id="retro-squares-container">
+        <div id="sq1" class="retro-square"></div>
+        <div id="sq2" class="retro-square"></div>
+        <div id="sq3" class="retro-square"></div>
+        <div id="sq4" class="retro-square"></div>
+        <div id="sq5" class="retro-square"></div>
+    </div>
+    <a name="top"></a>
+
+    <div id="main-wrapper"> 
+        
+        <header>
+            <div class="logo-container">
+                <img src="Vanjaka_novi.png?v=1" alt="Vanjaka Corporation Logotip" class="logo-img">
+                <p style="margin: 5px 0;">Preciznost, Inovacija, Kvaliteta!</p>
+            </div>
+            
+            <div class="header-content">
+                <p>Donosimo magiju u svijet elektronike.</p>
+                
+                <div class="header-badges">
+                    <a href="#" title="Vanjaka Foto Lab">
+                        <img src="fl_logo.png" alt="FL-O Logo">
+                    </a>
+                    <a href="#" title="Vanjaka Internet">
+                        <img src="vi_logo.png" alt="Vi Logo">
+                    </a>
+                    <a href="#" title="Gode Manufaktura">
+                        <img src="gm_logo.png" alt="GM Logo">
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#usluge">Proizvodi</a></li>
+                        <li><a href="#cjenik">Benefiti</a></li>
+                        <li><a href="#onama">Misija</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="marquee-box">
+                <marquee>
+                    *** NOVI PROIZVODI SVAKI TJEDAN! Istražite naš katalog elektroničkih i DIY rješenja! ***
+                </marquee>
+            </div>
+        </header>
+
+        <section id="usluge">
+            <h2 class="shadow-text">Naša Osnovna Ponuda (Our Core Offerings)</h2>
+            
+            <div class="service-item">
+                <div>
+                    <img src="retro_elektronika.png" alt="Elektronička Komponenta / DIY Proizvod" class="service-img">
+                    
+                    <h3>Inovativna Elektronika i DIY Proizvodi</h3>
+                    
+                    <p>Kreiramo svaki <span class="highlight">ručno izrađeni proizvod</span> s posebnom pažnjom na detalje. Naš posao je da vas usrećimo, od kamere do klima uređaja (From a camera to AC). Istražite naša jedinstvena <span class="highlight">DIY rješenja</span>.</p>
+                    <ul>
+                        <li>Tjedna izdanja novih proizvoda</li>
+                        <li>Kvalitetne elektroničke komponente</li>
+                        <li>Prilagođeni "uradi sam" (DIY) setovi</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <img src="retro_podrska.png" alt="Ikona Korisničke Podrške / Jamstva" class="service-img">
+                    
+                    <h3>Korisnička Podrška i Jamstva</h3>
+                    <p>Naš <span class="highlight">Vanjaka servisni tim</span> spreman je odgovoriti na sva vaša pitanja o našim DIY i standardnim proizvodima. Vaše povjerenje nam je važno. Osiguravamo vam <span class="highlight">dugoročnu bezbrižnost</span>.</p>
+                    <ul>
+                        <li>10-godišnje jamstvo na sve proizvode</li>
+                        <li>100% povrat novca (Refund)</li>
+                        <li>Ažuriranja stranice s novim idejama</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 10px; background: #c0c0c0; border: 2px outset #ffffff;">
+                <h3 style="margin-top: 0; color: #000080;">Ključne Značajke (Key Features)</h3>
+                <p>Ono što vi smatrate poslom, za nas je hobi. Naša strast prema inovacijama osigurava uvijek nove ideje i proizvode za vas. Samo Vanjaka.</p>
+            </div>
+            
+        </section>
+
+        <section id="cjenik">
+            <h2 class="shadow-text">Benefiti i Popusti za Korisnike (Advantages of Our Solutions)</h2>
+            
+            <p>Pronađite brojne popuste na naše proizvode. Samo jedan. Samo Vanjaka.</p>
+
+            <table style="width: 100%; border: 3px solid black; border-collapse: collapse; background-color: #f8f8f8; font-family: "Times New Roman", Times, serif; font-size: 0.95em;">
+                <thead>
+                    <tr style="background-color: #000080; color: white; border: 1px solid black;">
+                        <th style="padding: 10px; border: 1px solid black;">Status</th>
+                        <th style="padding: 10px; border: 1px solid black;">Opis Popusta</th>
+                        <th style="padding: 10px; border: 1px solid black;">Popust</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border: 1px solid black;">
+                        <td style="padding: 8px; border: 1px solid black;">Prva Kupnja</td>
+                        <td style="padding: 8px; border: 1px solid black;">Popust na vaš prvi proizvod</td>
+                        <td style="padding: 8px; border: 1px solid black; font-weight: bold; color: #000080;">30% OFF</td>
+                    </tr>
+                    <tr style="background-color: #e0e0e0; border: 1px solid black;">
+                        <td style="padding: 8px; border: 1px solid black;">Vanjaka Consumer Member</td>
+                        <td style="padding: 8px; border: 1px solid black;">Popust za sve članove potrošače</td>
+                        <td style="padding: 8px; border: 1px solid black; font-weight: bold; color: #000080;">20% OFF</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                        <td style="padding: 8px; border: 1px solid black;">Vanjaka Team Member</td>
+                        <td style="padding: 8px; border: 1px solid black;">Popust ako ste član Vanjaka tima</td>
+                        <td style="padding: 8px; border: 1px solid black; font-weight: bold; color: #000080;">40% OFF</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px;">* Popusti se ne mogu kombinirati. Provjerite uvjete članstva!</p>
+        </section>
+
+        <section id="onama">
+            <h2 class="shadow-text">Naša Misija i Nove Ideje</h2>
+            <p>Naša misija je usrećiti vas! Svaki ručno izrađeni proizvod pravimo s izuzetnim okom za detalje. Uvijek imamo iznenađenje za vas jer dolazimo s <span class="highlight">uvijek novim idejama</span>.</p>
+            
+            <p style="text-align: center;"><span class="blink-text">WEB STRANICU POGONI NAPREDNI SERVER 1998. GODINE!</span></p>
+        </section>
+
+        <section id="kontakt">
+            <h2 class="shadow-text">Kontaktirajte Naš Servisni Tim</h2>
+            <p>Javite nam se s detaljima vašeg DIY projekta ili s pitanjima o našim proizvodima!</p>
+
+            <div id="error-message"></div>
+
+            <form id="contactForm" action="mailto:vanjaka.official@gmail.com" method="POST" enctype="text/plain" style="max-width: 500px; margin: auto;">
+                <p><label for="ime">Ime i Prezime:</label><br>
+                <input type="text" id="ime" name="ime" required></p>
+                
+                <p><label for="email">E-mail Adresa:</label><br>
+                <input type="email" id="email" name="email" required></p>
+                
+                <p><label for="poruka">Vaša Poruka / Upit o Proizvodu:</label><br>
+                <textarea id="poruka" name="poruka" rows="5" required></textarea></p>
+                
+                <button type="submit">Pošalji Upit</button>
+            </form>
+
+        </section>
+
+        <footer>
+            <p>Vanjaka Corporation | E-mail: vanjaka.official@gmail.com</p>
+            <p>&copy; 2025. Sva prava pridržana. | <a href="#cjenik" style="color: #add8e6; text-decoration: underline;">Popusti i Benefiti</a></p>
+            
+            <div class="retro-bottom">
+                <div>
+                    <p style="margin-bottom: 3px;">BROJAČ POSJETA:</p>
+                    <div class="counter">
+                        9 7 3 2 4 1
+                    </div>
+                </div>
+                
+                <div class="badge-container">
+                    <a href="#" title="Optimizirano za Netscape!">
+                        <img src="netscape_now.gif" alt="Netscape Now" class="browser-badge-img">
+                    </a>
+                    
+                    <a href="#" title="Radi i na Microsoft Internet Exploreru!">
+                        <img src="ie_power.gif" alt="Internet Explorer" class="browser-badge-img">
+                    </a>
+                    
+                    <a href="#" title="Kodirano u HTML-u!">
+                        <img src="html_valid.gif" alt="HTML Valid" class="browser-badge-img">
+                    </a>
+                    
+                    <a href="#" title="Sufinancirala Republika Hrvatska!">
+                        <img src="sufinancirala_rj.gif" alt="Sufinancirala RJ" class="browser-badge-img">
+                    </a>
+                </div>
+
+                <a href="#top" class="top-link">[ Vrati se na Vrh Stranice ]</a>
+            </div>
+
+            <p class="legal-text">
+                Upozorenje: Sadržaj na ovoj stranici isključivo je vlasništvo Vanjaka Korporacije (Vanjaka Corp.) i zaštićen je međunarodnim zakonima o autorskim pravima (Copyright Law) iz 1997. godine. Neovlašteno umnožavanje, distribucija ili reprodukcija bilo kojeg dijela koda, teksta, ili grafike strogo je zabranjeno i bit će kažnjeno u punoj mjeri. Sva prava na proizvode su zadržana, uključujući i one koje još nismo izmislili. Vanjaka Corporation izuzima se od odgovornosti za bilo kakve štete uzrokovane lošim odabirom monitora ili internetskim vezama sporijim od 28.8K. Koristite na vlastitu odgovornost.
+            </p>
+
+        </footer>
+        
+        <div id="cookie-banner">
+            <p style="display: inline-block; margin: 0;">Ova web stranica koristi kolačiće (cookies) za osiguravanje dugoročne bezbrižnosti i funkcionalnosti. Nastavkom prihvaćate Politiku Privatnosti Vanjaka Korporacije.</p>
+            <button id="accept-cookies">Prihvaćam</button>
+        </div>
+
+    </div> 
+
+    <script>
+        // JavaScript za Validaciju Kontakt Forme
+        const form = document.getElementById('contactForm');
+        const errorMessageDiv = document.getElementById('error-message'); 
+
+        form.addEventListener('submit', function(event) {
+            
+            const validationResult = validateForm();
+            if (validationResult !== true) {
+                 event.preventDefault(); 
+                 errorMessageDiv.innerHTML = 'ERROR: ' + validationResult; 
+                 errorMessageDiv.style.display = 'block'; 
+            } else {
+                 errorMessageDiv.style.display = 'none'; 
+                 alert('Vaša poruka je proslijeđena vašem e-mail programu. Molimo potvrdite slanje u tom programu.');
+            }
+        });
+
+        function validateForm() {
+            const name = document.getElementById('ime').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('poruka').value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                return 'Molimo popunite sva obavezna polja!'; 
+            }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+            if (!emailPattern.test(email)) {
+                return 'E-mail adresa nije u ispravnom formatu. (npr. ime@domena.com)'; 
+            }
+            return true; 
+        }
+        
+        // COOKIE BANNER SCRIPT: NEMA PAMĆENJA
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptButton = document.getElementById('accept-cookies');
+
+        acceptButton.addEventListener('click', function() {
+            // Skriva baner, ali ga ne pamti trajno
+            cookieBanner.style.display = 'none';
+        });
+
+    </script>
+</body>
+</html>
